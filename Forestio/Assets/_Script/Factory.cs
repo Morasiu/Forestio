@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class ItemTree : MonoBehaviour {
+public class Factory : MonoBehaviour {
     public Phase phase;
 
     [SerializeField]
@@ -20,4 +20,3 @@ public class ItemTree : MonoBehaviour {
     }
     
 }
-
