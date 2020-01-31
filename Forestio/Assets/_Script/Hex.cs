@@ -28,7 +28,7 @@ public class Hex : MonoBehaviour
         // Draws a 5 unit long red line in front of the object
         Gizmos.color = Color.red;
         Vector3 direction = transform.TransformDirection(Vector3.back) * 5;
-        Gizmos.DrawRay(transform.position, direction);
+        Gizmos.DrawRay(transform.position, direction * 5);
     }
 
     // Update is called once per frame
