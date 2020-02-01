@@ -26,7 +26,6 @@ public class CameraManager : MonoBehaviour
         rot = Input.GetAxis("Mouse ScrollWheel") * zoomSpeed * Time.deltaTime * -250f;
 
         if (rot != 0) {
-            Debug.Log(rot);
             storePos = new Vector3(Mathf.Clamp(storePos.x + rot, -50f,-36f), storePos.y, storePos.z);
             transform.localEulerAngles = storePos;
         }
