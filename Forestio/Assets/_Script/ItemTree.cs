@@ -2,7 +2,7 @@
 using UnityEngine;
 
 public class ItemTree : MonoBehaviour {
-    public Phase phase;
+    public Phase phase = Phase.Zero;
 
     [SerializeField]
     private float TimeToSecondPhase = 3f;
@@ -12,11 +12,13 @@ public class ItemTree : MonoBehaviour {
 
     // Start is called before the first frame update
     IEnumerator Start() {
-        phase = Phase.First;
-        yield return new WaitForSeconds(TimeToSecondPhase);
-        phase = Phase.Second;
-        yield return new WaitForSeconds(TimeToThirdPhase);
-        phase = Phase.Third;
+        if (phase == Phase.Zero) {
+            phase = Phase.First;
+            yield return new WaitForSeconds(TimeToSecondPhase);
+            phase = Phase.Second;
+            yield return new WaitForSeconds(TimeToThirdPhase);
+            phase = Phase.Third;
+        }
     }
     
 }
