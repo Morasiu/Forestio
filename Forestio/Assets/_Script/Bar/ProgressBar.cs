@@ -10,36 +10,37 @@ public class ProgressBar : MonoBehaviour
 
     public float targetPercentage;
     float changeValue;
-    float actualPercentage;
+    float actualWidth;
 
     private void Update()
     {
         SetTargetValue();
         AnimateProgressBar();
-        actualPercentage = o2Bar.rectTransform.sizeDelta.x;
+        actualWidth = o2Bar.rectTransform.sizeDelta.x;
     }
 
     public void SetTargetValue()
     {
-        if (actualPercentage < targetPercentage)
+        float targetWidth = targetPercentage * o2Bar.rectTransform.sizeDelta.x;
+        if (actualWidth < targetWidth)
         {
-            changeValue = 5f;
+            changeValue = 1f;
         }
-        else if(actualPercentage > targetPercentage)
+        else if(actualWidth > targetPercentage)
         {
-            changeValue = -5f;
+            changeValue = -1f;
         }
-        else if(Math.Abs(actualPercentage - targetPercentage)<o2Bar.rectTransform.sizeDelta.x/50)  
+        else if(Math.Abs(actualWidth - targetPercentage) < o2Bar.rectTransform.sizeDelta.x/100)  
         {
 
             changeValue = 0;
-            actualPercentage = targetPercentage;
+            actualWidth = targetPercentage;
         }
     }
 
     public void AnimateProgressBar()
     {
-        var temporaryValue = actualPercentage + changeValue;
+        var temporaryValue = actualWidth * o2Bar.rectTransform.sizeDelta.x + changeValue;
         o2Bar.rectTransform.sizeDelta = new Vector2(temporaryValue, o2Bar.rectTransform.sizeDelta.y);
     }
 
