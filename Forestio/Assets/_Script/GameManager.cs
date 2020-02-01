@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-public class BarManager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
     List<Hex> HexaList;
-    List<Hex> GoodHexas;
-    List<Hex> BadHexas;
+
     ProgressBar progressBar;
+
     void Start()
     {
         HexaList = FindObjectsOfType<Hex>().ToList<Hex>();
@@ -19,8 +19,20 @@ public class BarManager : MonoBehaviour
         var naturalHexa = HexaList.Sum(x => x.HexState.CompareTo(HexState.Natural));
         var poluttedHexa = HexaList.Sum(x => x.HexState.CompareTo(HexState.Polluted));
 
+        if (naturalHexa == 0) {
+            Debug.Log("POLLUTION WON! :(");
+            return;
+        } else if (poluttedHexa == 0) {
+            Debug.Log("NATURE WON! :)");
+            return;
+        }
+
         float percentage = (float)(naturalHexa / poluttedHexa);
         progressBar.targetPercentage = percentage;
+
+        if (percentage == 0) {
+
+        } 
     }
 
 
