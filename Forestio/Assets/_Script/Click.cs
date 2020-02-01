@@ -9,8 +9,8 @@ public class Click : MonoBehaviour
     GameObject NaturalMenu;
     public GameObject NeutralMenu;
     GameObject PollutedMenu;
-    
-    //public GameObject EarthCenter;
+
+    public Material mat;
     public LayerMask layer;
     GameObject TargetMenu;
     
@@ -30,7 +30,19 @@ public class Click : MonoBehaviour
             if (TargetMenu != null)
                 if (hitBar.collider != null)
                 {
-                    print($"bar uderza w {hitBar.collider.name}");
+                    if (Input.GetKey(KeyCode.Mouse0) || Input.GetKey(KeyCode.Mouse1))
+                    {
+
+                        if (hitBar.collider.name.CompareTo("Oak") == 0)
+                            OnOakChosen();
+                        if (hitBar.collider.name.CompareTo("Bush") == 0)
+                            OnBushChosen();
+                        if (hitBar.collider.name.CompareTo("Pine") == 0)
+                            OnPineChosen();
+                        if (hitBar.collider.name.CompareTo("RedWood") == 0)
+                            OnRedwoodChosen();
+                        print($"bar uderza w {hitBar.collider.name}");
+                    }
 
                     ShouldInstantiate = false;
                 }
@@ -76,6 +88,8 @@ public class Click : MonoBehaviour
 
     private void SetTargetMenu()
     {
+        if (hitHexa.collider == null)
+            return;
         var HexaStatus = hitHexa.collider.gameObject.GetComponent<Hex>().HexState;
         Debug.Log($"Hit: {HexaStatus} ");
         
@@ -96,7 +110,9 @@ public class Click : MonoBehaviour
             case HexState.Neutral:
                 if (ShouldInstantiate)
                     TargetMenu = Instantiate(NeutralMenu,new Vector3(hitHexaPosition.x, hitHexaPosition.y,5f), Quaternion.identity);
+                hitHexa.collider.GetComponent<MeshRenderer>().material = mat;
                 break;
+
             default:
                 Debug.LogError("Uderzony Hex nie ma wartosci state");    
                 break;
@@ -135,18 +151,21 @@ public class Click : MonoBehaviour
 
     public void OnOakChosen()
     {
-
+        print("Oak !!!!");
     }
     public void OnBushChosen()
     {
+        print("Bush !!!!");
 
     }
     public void OnPineChosen()
     {
+        print("Pine !!!!");
 
     }
     public void OnRedwoodChosen()
     {
+        print("Redwood !!!!");
 
     }
 
