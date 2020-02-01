@@ -29,11 +29,5 @@ public class GameManager : MonoBehaviour
 
         float percentage = (float)(naturalHexa / poluttedHexa);
         progressBar.targetPercentage = percentage;
-
-        if (percentage == 0) {
-
-        } 
     }
-
-
 }
